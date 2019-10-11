@@ -18,8 +18,8 @@ public class SqMaxTest {
     }
     @Test
     public void maxThird(){
-        int result = SqMax.max(1,5,10,2);
-        assertThat(result, is(10));
+        int result = SqMax.max(100,5,102,2);
+        assertThat(result, is(102));
     }
     @Test
     public void maxForth(){

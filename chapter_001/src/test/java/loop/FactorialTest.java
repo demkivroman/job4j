@@ -21,7 +21,7 @@ public class FactorialTest {
     }
 
     @Test
-    public void whenCalculateFactorialForOneThenOne(){
+    public void whenCalculateFactorialForOneThenOne() {
         Factorial f = new Factorial();
         int result = f.calc(1);
         assertThat(result, is(1));

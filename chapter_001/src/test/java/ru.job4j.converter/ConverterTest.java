@@ -1,10 +1,11 @@
 package ru.job4j.converter;
+import job4j.converter.Converter;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class ConverterTest {
     @Test
-    public void rubleToEuro(){
+    public void rubleToEuro() {
      int in = 140;
      int expected = 2;
      int out = Converter.rubleToEuro(in);
@@ -12,21 +13,21 @@ public class ConverterTest {
     }
 
     @Test
-    public void rubleToDollar(){
+    public void rubleToDollar() {
         int in = 180;
         int expected = 3;
         int out = Converter.rubleToDollar(in);
         Assert.assertEquals(expected, out);
     }
    @Test
-   public void euroToRuble(){
+   public void euroToRuble() {
       int in = 2;
       int expected = 140;
       int out = Converter.euroToRuble(in);
       Assert.assertEquals(expected, out);
    }
    @Test
-   public void dollarToRuble(){
+   public void dollarToRuble() {
         int in = 2;
         int expected = 120;
         int out = Converter.dollarToRuble(in);

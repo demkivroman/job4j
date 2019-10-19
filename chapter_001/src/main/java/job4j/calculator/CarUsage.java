@@ -1,10 +1,12 @@
-package ru.job4j.calculator;
+package job4j.calculator;
+
+import job4j.calculator.Car;
 
 public class CarUsage {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Car audi = new Car();
         boolean driving = audi.canDrive();
-        String carSays = driving ? "I can drive":"I can't drive";
+        String carSays = driving ? "I can drive" : "I can't drive";
         System.out.println(carSays);
         System.out.println("Can you drive? :" + driving);
         System.out.println("I am going to a gas station.");

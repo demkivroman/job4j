@@ -45,7 +45,7 @@ public class MatrixCheckTest {
         assertThat(result, is(false));
     }
     @Test
-    public void OneMoreTest() {
+    public void oneMoreTest() {
         char[][] input = {
                 {' ', ' ', 'X', ' ', 'X'},
                 {' ', ' ', 'X', ' ', 'X'},

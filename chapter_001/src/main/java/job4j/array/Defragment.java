@@ -1,19 +1,20 @@
 package job4j.array;
 
 public class Defragment {
-    public static String[] compress(String[] array){
-        for(int index = 0; index < array.length; index++){
+    public static String[] compress(String[] array) {
+        for (int index = 0; index < array.length; index++) {
             String cell = array[index];
-            if (cell == null){
+            if (cell == null) {
                 // переместить первую не null ячейку
                 // Здесь нужен цикл while
                 int i = index;
-                while (array[i] == null){
+                while (array[i] == null) {
                     i++;
-                    if (i == 7)
+                    if (i == 7) {
                         break;
+                    }
                 }
-                if(i < array.length){
+                if (i < array.length) {
                     array[index] = array[i];
                     array[i] = null;
                 }

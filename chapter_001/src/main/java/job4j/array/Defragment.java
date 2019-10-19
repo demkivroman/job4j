@@ -10,7 +10,7 @@ public class Defragment {
                 int i = index;
                 while (array[i] == null) {
                     i++;
-                    if (i == 7) {
+                    if (i == array.length) {
                         break;
                     }
                 }

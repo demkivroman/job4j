@@ -3,26 +3,26 @@ package job4j.area;
 public class MatrixCheck {
     public static boolean isWin(char[][] board) {
         boolean result = false;
-        boolean rowCheck = true;
-        boolean columnCheck = true;
+        boolean rowcheck = true;
+        boolean columncheck = true;
         for (int row = 0; row < board.length; row++) {
             for (int cell = 0; cell < board.length; cell++) {
                 char signR = board[row][cell];
                 char signC = board[cell][row];
                 if (signR != 'X') {
-                    rowCheck = false;
+                    rowcheck = false;
                 }
                 if (signC != 'X') {
-                    columnCheck = false;
+                    columncheck = false;
                 }
                 System.out.print(signR);
             }
-            if (rowCheck || columnCheck) {
+            if (rowcheck || columncheck) {
                 result = true;
                 //break;
             } else {
-                rowCheck = true;
-                columnCheck = true;
+                rowcheck = true;
+                columncheck = true;
             }
             System.out.println();
         }

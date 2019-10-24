@@ -8,3 +8,6 @@ as well
 В курсе производилась работа с веткамы git.
 
 I think 2 + 2 = 4
+
+
+Insert changes for branch task_124176

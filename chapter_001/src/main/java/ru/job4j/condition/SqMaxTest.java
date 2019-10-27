@@ -2,7 +2,7 @@ package ru.job4j.condition;
 
 import job4j.condition.SqMax;
 import org.junit.Test;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class SqMaxTest {

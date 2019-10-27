@@ -3,7 +3,7 @@ package loop;
 import job4j.loop.CheckPrimeNumber;
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class CheckPrimeNumberTest {

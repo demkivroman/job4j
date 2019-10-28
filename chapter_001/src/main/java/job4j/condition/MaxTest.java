@@ -12,19 +12,19 @@ public class MaxTest {
         assertThat(result, is(2));
     }
     @Test
-    public void firstMax() {
-       int result = Max.max(6, 2);
+    public void whenMaxFromThree() {
+       int result = Max.max(6, 2, 0);
        assertThat(result, is(6));
     }
 
     @Test
-    public void secondtMax() {
-        int result = Max.max(1, 2);
-        assertThat(result, is(2));
+    public void whenMaxFromForth() {
+        int result = Max.max(1, 2, 10, 0);
+        assertThat(result, is(10));
     }
     @Test
-    public void firsAndSecondEqual() {
-        int result = Max.max(2, 2);
+    public void whenAllEqual() {
+        int result = Max.max(2, 2, 2, 2);
         assertThat(result, is(2));
     }
 }

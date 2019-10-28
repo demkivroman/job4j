@@ -14,9 +14,19 @@ public class Point {
     }
 
     public static void main(String[] args) {
-        Point a = new Point(0,0);
-        Point b = new Point(0,2);
+        Point a = new Point(15, 15);
+        Point b = new Point(23, 30);
         double dist = a.distance(b);
         System.out.println(dist);
+        a = new Point(7, 2);
+        b = new Point(6, 2);
+        dist = a.distance(b);
+        System.out.println(dist);
+        a = new Point(3, 2);
+        b = new Point(6, 2);
+        dist = a.distance(b);
+        System.out.println(dist);
+
+
     }
 }

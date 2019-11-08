@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Tracker {
@@ -31,7 +32,7 @@ public class Tracker {
         for (int index = 0; index < this.items.length; index++) {
             Item im = this.items[index];
             if (im.getId().equals(id)) {
-               // item.setId(this.generateId());
+                item.setId(im.getId());
                 this.items[index] = item;
                 result = true;
                 break;
@@ -50,7 +51,6 @@ public class Tracker {
         for (int index = 0; index < this.items.length; index++) {
             Item im = this.items[index];
             if (im.getId().equals(id)) {
-                this.items[index] = null;
                 if (index + 1 < this.items.length && index - 1 >= -1) {
                     System.arraycopy(items, index + 1, items, index, this.items.length - index - 1);
                 }
@@ -94,29 +94,15 @@ public class Tracker {
     public Item[] findByName(String key) {
         Item[] tmp = new Item[this.items.length];
         int index = 0;
+        int countCoinc = 0;
         for (Item im : this.items) {
             if (im != null && im.getName().equals(key)) {
                 tmp[index++] = im;
+                countCoinc++;
             }
         }
-        int countNull = 0;
-        for (Item im : tmp) {
-            if (im == null) {
-                break;
-            } else {
-                countNull++;
-            }
-        }
-        Item[] result = new Item[countNull];
-        index = 0;
-        for (Item im : tmp) {
-            if (im != null) {
-                result[index++] = im;
-            } else {
-                break;
-            }
-        }
-        return result;
+
+        return Arrays.copyOf(tmp, countCoinc);
     }
 
     /**

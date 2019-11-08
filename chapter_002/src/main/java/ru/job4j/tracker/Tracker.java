@@ -29,7 +29,7 @@ public class Tracker {
      */
     public boolean replace(String id, Item item) {
         boolean result = false;
-        for (int index = 0; index < this.items.length; index++) {
+        for (int index = 0; index < position; index++) {
             Item im = this.items[index];
             if (im.getId().equals(id)) {
                 item.setId(im.getId());
@@ -48,20 +48,17 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean result = false;
-        for (int index = 0; index < this.items.length; index++) {
+        for (int index = 0; index < position; index++) {
             Item im = this.items[index];
             if (im.getId().equals(id)) {
                 if (index + 1 < this.items.length && index - 1 >= -1) {
                     System.arraycopy(items, index + 1, items, index, this.items.length - index - 1);
                 }
                 result = true;
+                position--;
                 break;
             }
         }
-        /*String nam;
-        for (Item im : this.items) {
-            nam = im.getName();
-        }*/
         return result;
     }
 
@@ -70,20 +67,7 @@ public class Tracker {
      * @return - array with all items
      */
     public Item[] findAll() {
-        int countNull = 0;
-        for (Item im : this.items) {
-            if (im == null) {
-                countNull++;
-            }
-        }
-        Item[] result = new Item[this.items.length - countNull];
-        int index = 0;
-        for (Item im : this.items) {
-            if (im != null) {
-                result[index++] = im;
-            }
-        }
-        return result;
+        return Arrays.copyOf(this.items, position);
     }
 
     /**
@@ -93,9 +77,9 @@ public class Tracker {
      */
     public Item[] findByName(String key) {
         Item[] tmp = new Item[this.items.length];
-        int index = 0;
         int countCoinc = 0;
-        for (Item im : this.items) {
+        for (int index = 0; index < position; index++) {
+            Item im = this.items[index];
             if (im != null && im.getName().equals(key)) {
                 tmp[index++] = im;
                 countCoinc++;
@@ -112,7 +96,8 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = null;
-        for (Item im : this.items) {
+        for (int index = 0; index < position; index++) {
+            Item im = this.items[index];
             if (im.getId().equals(id)) {
                 result = im;
                 break;

@@ -81,8 +81,7 @@ public class Tracker {
         for (int index = 0; index < position; index++) {
             Item im = this.items[index];
             if (im != null && im.getName().equals(key)) {
-                tmp[index++] = im;
-                countCoinc++;
+                tmp[countCoinc++] = im;
             }
         }
 

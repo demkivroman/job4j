@@ -21,10 +21,13 @@ public class PaintTest {
                 new String(out.toByteArray()),
                 is(
                         new StringBuilder().
-                                append("x x x x\n")
-                                .append("x x x x\n")
-                                .append("x x x x\n")
-                                .append("x x x x\n")
+                                append("x x x x")
+                                .append(System.lineSeparator())
+                                .append("x x x x")
+                                .append(System.lineSeparator())
+                                .append("x x x x")
+                                .append(System.lineSeparator())
+                                .append("x x x x")
                                 .append(System.lineSeparator()).toString()
                 )
         );

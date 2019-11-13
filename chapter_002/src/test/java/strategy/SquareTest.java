@@ -14,10 +14,13 @@ public class SquareTest {
         assertThat(
                 square.draw(),
                 is(new StringBuilder().
-                        append("x x x x\n")
-                        .append("x x x x\n")
-                .append("x x x x\n")
-                .append("x x x x\n").toString())
+                        append("x x x x")
+                        .append(System.lineSeparator())
+                        .append("x x x x")
+                        .append(System.lineSeparator())
+                        .append("x x x x")
+                        .append(System.lineSeparator())
+                        .append("x x x x").toString())
         );
     }
     @Test
@@ -26,10 +29,13 @@ public class SquareTest {
         assertThat(
                 triangle.draw(),
                 is(new StringBuilder()
-                .append("      x     \n")
-                .append("    x x x   \n")
-                .append("  x x x x x  \n")
-                .append("x x x x x x x \n").toString())
+                .append("      x     ")
+                .append(System.lineSeparator())
+                .append("    x x x   ")
+                .append(System.lineSeparator())
+                .append("  x x x x x  ")
+                .append(System.lineSeparator())
+                .append("x x x x x x x ").toString())
         );
     }
 }

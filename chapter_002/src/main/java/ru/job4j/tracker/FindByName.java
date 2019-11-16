@@ -9,9 +9,8 @@ public class FindByName implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
         String name = input.askStr("Enter name: ");
-        Item[] items = tracker.findByName(name);
-        for (Item im : items) {
-            System.out.println(im.getName() + " - " + im.getId());
+        for (Item im : tracker.findByName(name)) {
+            System.out.println(String.format("%s - %s", im.getName(), im.getId()));
         }
         return true;
     }

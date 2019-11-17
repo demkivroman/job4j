@@ -19,7 +19,7 @@ public class StartUI {
         System.out.println("6. === Exit ===");
     }
     public static void main(String[] args) {
-        Input validate = new ValidateInput();
+        Input validate = new ValidateInput(new ConsoleInput());
         Tracker tracker = new Tracker();
         UserAction[] actions = {
                 new CreateAction(),

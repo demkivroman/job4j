@@ -4,14 +4,19 @@ public class StubAction implements UserAction {
     private boolean call = false;
 
     @Override
-    public String name() {
-        return "Stub action";
+    public int key() {
+        return 0;
     }
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
         call = true;
         return false;
+    }
+
+    @Override
+    public String info() {
+        return null;
     }
 
     public boolean isCall() {

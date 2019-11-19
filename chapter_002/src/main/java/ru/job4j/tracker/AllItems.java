@@ -1,11 +1,9 @@
 package ru.job4j.tracker;
 
-public class AllItems implements UserAction {
-    @Override
-    public String name() {
-        return "=== Show all Items ===";
+public class AllItems extends BaseAction {
+    public AllItems(int key, String name) {
+        super(key, name);
     }
-
     @Override
     public boolean execute(Input input, Tracker tracker) {
         for (Item item : tracker.findAll()) {

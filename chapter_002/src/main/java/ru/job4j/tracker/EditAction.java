@@ -1,9 +1,8 @@
 package ru.job4j.tracker;
 
-public class EditAction implements UserAction {
-    @Override
-    public String name() {
-        return "=== Edit Item ===";
+public class EditAction extends BaseAction {
+    public EditAction(int key, String name) {
+        super(key, name);
     }
 
     @Override

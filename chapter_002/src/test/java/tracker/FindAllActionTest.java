@@ -19,7 +19,7 @@ public class FindAllActionTest {
         Tracker tracker = new Tracker();
         Item item = new Item("fix bug");
         tracker.add(item);
-        AllItems act = new AllItems();
+        AllItems act = new AllItems(1, "Show all Items");
         act.execute(new StubInput(new String[] {}), tracker);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add(item.getId() + " " + item.getName())

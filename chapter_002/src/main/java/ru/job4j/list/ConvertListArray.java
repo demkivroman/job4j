@@ -7,17 +7,17 @@ public class ConvertListArray {
     public int[][] toArray(List<Integer> list, int rows) {
         int cells = list.size() % rows != 0 ? list.size() / rows + 1 : list.size() / rows;
         int [][] array = new int[rows][cells];
-        int index = 0;
-        for (int x = 0; x < rows; x++) {
-            for (int y = 0; y < cells; y++) {
-                if (index < list.size()) {
-                    array[x][y] = list.get(index++);
-                } else {
-                    array[x][y] = 0;
-                }
-
+        int x = 0, y = 0;
+        for (int el : list) {
+            if (y == cells) {
+                x++;
+                y = 0;
+                array[x][y++] = el;
+            } else {
+                array[x][y++] = el;
             }
         }
+
         return array;
     }
 }

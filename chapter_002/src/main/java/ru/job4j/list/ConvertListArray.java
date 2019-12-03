@@ -1,6 +1,7 @@
 package ru.job4j.list;
 
 import java.lang.reflect.Array;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ConvertListArray {
@@ -17,5 +18,14 @@ public class ConvertListArray {
         }
 
         return array;
+    }
+    public List<Integer> convert (List<int[]> list) {
+        List<Integer> result = new LinkedList<Integer>();
+        for (int [] arr : list) {
+            for (int el : arr) {
+                result.add(el);
+            }
+        }
+        return result;
     }
 }

@@ -12,10 +12,8 @@ public class ConvertListArray {
             if (y == cells) {
                 x++;
                 y = 0;
-                array[x][y++] = el;
-            } else {
-                array[x][y++] = el;
             }
+            array[x][y++] = el;
         }
 
         return array;

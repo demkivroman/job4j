@@ -1,9 +1,6 @@
 package ru.job4j.tracker;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Tracker {
     /**
@@ -52,13 +49,15 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean result = false;
+        int index = 0;
         for (Item im : this.items) {
             if (im.getId().equals(id)) {
-                this.items.remove(im);
+                this.items.remove(index);
                 result = true;
                 position--;
                 break;
             }
+            index++;
         }
         return result;
     }
@@ -68,14 +67,8 @@ public class Tracker {
      * @return - array with all items
      */
     public Item[] findAll() {
-        List<Item> temp = new ArrayList<>();
-        temp = this.items.subList(0, position);
-        Item[] result = new Item[temp.size()];
-        int index = 0;
-        for (Item im : temp) {
-            result[index++] = im;
-        }
-        return result;
+        Item[] result = this.items.toArray(new Item[0]);
+        return Arrays.copyOf(result, position - 1);
     }
 
     /**
@@ -84,15 +77,15 @@ public class Tracker {
      * @return - founded items
      */
     public Item[] findByName(String key) {
-        Item[] tmp = new Item[this.items.size()];
+        List<Item> tmp = new LinkedList<>();
         int countCoinc = 0;
         for (Item im : this.items) {
             if (im != null && im.getName().equals(key)) {
-                tmp[countCoinc++] = im;
+                tmp.add(im);
             }
         }
 
-        return Arrays.copyOf(tmp, countCoinc);
+        return tmp.toArray(new Item[0]);
     }
 
     /**

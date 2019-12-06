@@ -47,6 +47,29 @@ public class TrackerTest {
         assertThat(expected, is(cmp));
     }
     @Test
+    public void whenFindAllItems() {
+        Tracker tracker = new Tracker();
+        Item first = new Item("first");
+        Item second = new Item("second");
+        Item third = new Item("third");
+        Item forth = new Item(null);
+        tracker.add(first);
+        tracker.add(second);
+        tracker.add(third);
+        tracker.add(forth);
+        String[] expected = {"first", "second", "third"};
+        String[] is = new String[3];
+        int index = 0;
+        for (Item item : tracker.findAll()) {
+            is[index++] = item.getName();
+        }
+
+        assertThat(
+                expected,
+                is(is)
+        );
+    }
+    @Test
     public void whenFindItemByNameReturnArr() {
         Tracker tracker = new Tracker();
         Item test1 = new Item("test");

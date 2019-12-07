@@ -61,4 +61,16 @@ public class StringsCompareTest {
         );
         assertThat(rst, lessThan(0));
     }
+    @Test
+    public void when123 () {
+        ListCompare compare = new ListCompare();
+        int rst = compare.compare(
+                "123",
+                "12345"
+        );
+        assertThat(
+                rst,
+                lessThan(0)
+        );
+    }
 }

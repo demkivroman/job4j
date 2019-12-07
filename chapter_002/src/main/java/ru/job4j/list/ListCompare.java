@@ -15,11 +15,14 @@ public class ListCompare implements Comparator<String> {
         }
 
         if (comp == 0 && o1.length() != o2.length()) {
-            String odd = o1.length() > o2.length() ? o1 : o2;
+        /*    String odd = o1.length() > o2.length() ? o1 : o2;
             int index = odd.length() - Math.abs(o1.length() - o2.length());
             for(int i = index; i < odd.length(); i++) {
                 comp += Integer.compare(Character.MIN_VALUE, odd.charAt(i));
             }
+
+         */
+        comp = Integer.compare(o1.length(), o2.length());
         }
         return comp;
     }

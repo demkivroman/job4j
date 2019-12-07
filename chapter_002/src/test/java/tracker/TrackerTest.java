@@ -4,6 +4,8 @@ import org.junit.Test;
 import ru.job4j.tracker.Item;
 import ru.job4j.tracker.Tracker;
 
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -39,7 +41,7 @@ public class TrackerTest {
         tracker.add(forth);
         boolean del = tracker.delete(second.getId());
         String[] expected = {"first", "third", "forth"};
-        String[] cmp = new String[tracker.findAll().length];
+        String[] cmp = new String[tracker.findAll().size()];
         int index = 0;
         for (Item im : tracker.findAll()) {
             cmp[index++] = im.getName();
@@ -82,9 +84,9 @@ public class TrackerTest {
         tracker.add(test3);
         tracker.add(test4);
         tracker.add(test5);
-        Item[] found = tracker.findByName("test");
+        List<Item> found = tracker.findByName("test");
         String[] expected = {"test", "test", "test"};
-        String[] cmp = new String[found.length];
+        String[] cmp = new String[found.size()];
         int index = 0;
         for (Item im : found) {
             cmp[index++] = im.getName();

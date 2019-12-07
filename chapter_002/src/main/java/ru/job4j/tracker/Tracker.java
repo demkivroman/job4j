@@ -6,7 +6,7 @@ public class Tracker {
     /**
      * Array for storing items
      */
-    private final ArrayList<Item> items = new ArrayList<Item>();
+    private final List<Item> items = new ArrayList<Item>();
     /**
      * Point for new item
      */
@@ -66,9 +66,8 @@ public class Tracker {
      * Method for looking for all items
      * @return - array with all items
      */
-    public Item[] findAll() {
-        Item[] result = this.items.toArray(new Item[0]);
-        return Arrays.copyOf(result, position - 1);
+    public List<Item> findAll() {
+        return this.items.subList(0, position - 1);
     }
 
     /**
@@ -76,16 +75,14 @@ public class Tracker {
      * @param key - name of searched item
      * @return - founded items
      */
-    public Item[] findByName(String key) {
+    public List<Item> findByName(String key) {
         List<Item> tmp = new LinkedList<>();
-        int countCoinc = 0;
         for (Item im : this.items) {
             if (im != null && im.getName().equals(key)) {
                 tmp.add(im);
             }
         }
-
-        return tmp.toArray(new Item[0]);
+        return tmp;
     }
 
     /**

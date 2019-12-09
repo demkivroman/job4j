@@ -1,13 +1,7 @@
-# job4j
-
-Make some changes after clone in temp folder :)
-
-I started course in october 2019 and plan to finish in 2019 
-as well
-
-В курсе производилась работа с веткамы git.
-
-I think 2 + 2 = 4
+[![Build Status](https://travis-ci.org/demkivroman/job4j.svg?branch=master)](https://travis-ci.org/demkivroman/job4j)
+[![codecov](https://codecov.io/gh/demkivroman/job4j/branch/master/graph/badge.svg)](https://codecov.io/gh/demkivroman/job4j)
 
 
-Insert changes for branch task_124176
+
+# junior
+Start project for junior course

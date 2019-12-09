@@ -67,7 +67,7 @@ public class Tracker {
      * @return - array with all items
      */
     public List<Item> findAll() {
-        return this.items.subList(0, position - 1);
+        return this.items.subList(0, position);
     }
 
     /**

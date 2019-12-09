@@ -1,7 +1,7 @@
-package coffeMachine;
+package coffemachine;
 
 import org.junit.Test;
-import ru.job4j.oop.coffeMachine.Machine;
+import ru.job4j.oop.coffemachine.Machine;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -24,7 +24,7 @@ public class MachineTest {
     @Test
     public void when50by35() {
         Machine machine = new Machine();
-        int[] expected = { 10, 5 };
+        int[] expected = {10, 5};
         int[] rsl = machine.change(50, 35);
 
         assertThat(

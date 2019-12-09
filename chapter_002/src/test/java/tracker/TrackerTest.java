@@ -59,6 +59,7 @@ public class TrackerTest {
         tracker.add(second);
         tracker.add(third);
         tracker.add(forth);
+        tracker.delete(forth.getId());
         String[] expected = {"first", "second", "third"};
         String[] is = new String[3];
         int index = 0;

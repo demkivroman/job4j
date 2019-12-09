@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.*;
 
 public class StringsCompareTest {
     @Test
-    public void whenStringsAreEqualThenZero () {
+    public void whenStringsAreEqualThenZero() {
         ListCompare compare = new ListCompare();
         int rst = compare.compare(
           "Ivanov",
@@ -21,7 +21,7 @@ public class StringsCompareTest {
         );
     }
     @Test
-    public void whenLeftLessThanRightResultShouldBeNegative () {
+    public void whenLeftLessThanRightResultShouldBeNegative() {
         ListCompare compare = new ListCompare();
         int rst = compare.compare(
                 "Ivanov",
@@ -33,7 +33,7 @@ public class StringsCompareTest {
         );
     }
     @Test
-    public void whenLeftGreaterThanRightResultShouldBePositive () {
+    public void whenLeftGreaterThanRightResultShouldBePositive() {
         ListCompare compare = new ListCompare();
         int rst = compare.compare(
                 "Petrov",
@@ -43,7 +43,7 @@ public class StringsCompareTest {
     }
 
     @Test
-    public void secondCharOfLeftGreaterThanRightShouldBePositive(){
+    public void secondCharOfLeftGreaterThanRightShouldBePositive() {
         ListCompare compare = new ListCompare();
         int rst = compare.compare(
                 "Petrov",
@@ -53,7 +53,7 @@ public class StringsCompareTest {
     }
 
     @Test
-    public void secondCharOfLeftLessThanRightShouldBeNegative(){
+    public void secondCharOfLeftLessThanRightShouldBeNegative() {
         ListCompare compare = new ListCompare();
         int rst = compare.compare(
                 "Patrova",
@@ -62,7 +62,7 @@ public class StringsCompareTest {
         assertThat(rst, lessThan(0));
     }
     @Test
-    public void when123 () {
+    public void when123() {
         ListCompare compare = new ListCompare();
         int rst = compare.compare(
                 "123",

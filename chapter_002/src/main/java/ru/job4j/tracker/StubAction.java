@@ -16,7 +16,7 @@ public class StubAction implements UserAction {
 
     @Override
     public String info() {
-        return null;
+        return "0. Stub action";
     }
 
     public boolean isCall() {

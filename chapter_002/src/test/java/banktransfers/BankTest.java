@@ -1,18 +1,31 @@
-package bank_transfers;
+package banktransfers;
 
 import org.junit.Test;
-import ru.job4j.bank_transfers.Account;
-import ru.job4j.bank_transfers.Bank;
-import ru.job4j.bank_transfers.User;
+import ru.job4j.banktransfers.Account;
+import ru.job4j.banktransfers.Bank;
+import ru.job4j.banktransfers.User;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class BankTest {
+    @Test
+    public void whenCheckGetUsrersAccountNull() {
+        Bank bank = new Bank();
+        User user = new User("Roman", "ks052635");
+        bank.addUser(user);
+        Account account = new Account(10000, "4056897812");
+        bank.addAccountToUser(user.getPassport(), account);
+        List<Account> list = bank.getUserAccounts("incorrect");
+        List<Account> expected = null;
+        assertThat(
+                list,
+                is(expected)
+        );
+    }
+
     @Test
     public void whenAddUserToMap() {
         Bank bank = new Bank();

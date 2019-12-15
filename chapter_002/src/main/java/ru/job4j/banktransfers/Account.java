@@ -1,4 +1,4 @@
-package ru.job4j.bank_transfers;
+package ru.job4j.banktransfers;
 
 public class Account {
     private double value;

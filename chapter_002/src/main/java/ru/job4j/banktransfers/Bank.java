@@ -1,4 +1,4 @@
-package ru.job4j.bank_transfers;
+package ru.job4j.banktransfers;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -61,10 +61,9 @@ public class Bank {
 
     private User getUser(String passport) {
         User user = null;
-        for (Map.Entry entry : this.userAccounts.entrySet()) {
-            User tmp = (User) entry.getKey();
-            if (tmp.getPassport().equals(passport)) {
-                user = tmp;
+        for (Map.Entry<User, List<Account>> entry : this.userAccounts.entrySet()) {
+            if (entry.getKey().getPassport().equals(passport)) {
+                user = entry.getKey();
                 break;
             }
         }

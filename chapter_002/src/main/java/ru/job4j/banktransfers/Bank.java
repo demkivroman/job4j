@@ -23,10 +23,14 @@ public class Bank {
     public void deleteAccountFromUser(String passport, Account account) {
         List<Account> userAc = this.getUserAccounts(passport);
         userAc.remove(account);
+
     }
     public List<Account> getUserAccounts(String passport) {
         User user = this.getUser(passport);
         List<Account> result = this.userAccounts.get(user);
+        if (result == null) {
+            result = new LinkedList<Account>();
+        }
         return result;
     }
 

@@ -19,10 +19,11 @@ public class BankTest {
         Account account = new Account(10000, "4056897812");
         bank.addAccountToUser(user.getPassport(), account);
         List<Account> list = bank.getUserAccounts("incorrect");
-        List<Account> expected = null;
+        bank.deleteAccountFromUser("incorrect", account);
+
         assertThat(
-                list,
-                is(expected)
+                list.size(),
+                is(0)
         );
     }
 

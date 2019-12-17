@@ -16,7 +16,7 @@ public class Bank {
     public void addAccountToUser(String passport, Account account) {
         User user = this.getUser(passport);
         List<Account> list = this.userAccounts.get(user);
-        if (!list.contains(account)) {
+        if (list != null && !list.contains(account)) {
             list.add(account);
         }
     }

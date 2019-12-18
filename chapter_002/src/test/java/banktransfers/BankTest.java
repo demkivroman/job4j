@@ -49,12 +49,11 @@ public class BankTest {
         Account account = new Account(10000, "4056897812");
         bank.addAccountToUser(user.getPassport(), account);
         bank.deleteUser(user);
-        List<Account> list = bank.getUserAccounts(user.getPassport());
-        List<Account> expected = null;
+        List<Account> expected = bank.getUserAccounts(user.getPassport());
 
         assertThat(
-                expected,
-                is(list)
+                expected.size(),
+                is(0)
         );
     }
     @Test

@@ -7,28 +7,9 @@ import java.util.List;
 
 public class Departure {
     public static void abs(List<String> orgs) {
-        orgs.sort(
-                new Comparator<String>() {
-                    @Override
-                    public int compare(String o1, String o2) {
-                        int result = 0;
-                        String[] arro1 = o1.split("\\\\");
-                        String[] arro2 = o2.split("\\\\");
-                        int size = arro1.length < arro2.length ? arro1.length : arro2.length;
-                        for (int i = 0; i < size; i++) {
-                            if (!arro1[i].equals(arro2[i])) {
-                                result = arro1[i].compareTo(arro2[i]);
-                                break;
-                            }
-                        }
-                        if (result == 0) {
-                            result = Integer.compare(arro1.length, arro2.length);
-                        }
-                        return result;
-                    }
-                }
-        );
+        orgs.sort(Comparator.naturalOrder());
     }
+
     public static void desc(List<String> orgs) {
         orgs.sort(new Comparator<String>() {
             @Override

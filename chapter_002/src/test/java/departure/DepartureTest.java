@@ -14,7 +14,7 @@ public class DepartureTest {
     @Test
     public void whenSortABC() {
         List<String> list = Arrays.asList(
-                 "k1", "sk1", "sk2"
+                 "sk1", "sk2", "k1"
         );
         Departure.abs(list);
 
@@ -44,20 +44,30 @@ public class DepartureTest {
         );
     }
     @Test
-    public void whenFillGasp() {
-        List<String> list = Arrays.asList(
-                "K1", "K2\\SK1", "K1\\SK1", "K1\\SK2", "K1\\SK1\\SSK1", "K1\\SK1\\SSK2",
-                "K2", "K2\\SK1\\SSK1", "K2\\SK1\\SSK2"
+    public void whenFillGaspMissed() {
+        List<String> input = Arrays.asList(
+                "k1/sk1"
         );
-        Departure.fillGaps(list);
         List<String> expected = Arrays.asList(
-                "K1\\K1\\K1", "K2\\SK1\\SK1", "K1\\SK1\\SK1", "K1\\SK2\\SK2", "K1\\SK1\\SSK1", "K1\\SK1\\SSK2",
-                "K2\\K2\\K2", "K2\\SK1\\SSK1", "K2\\SK1\\SSK2"
+                "k1", "k1/sk1"
         );
+        List<String> result = Departure.fillGaps(input);
 
         assertThat(
-                list,
+                result,
                 is(expected)
+        );
+    }
+
+    @Test
+    public void whenNonChange() {
+        List<String> input = Arrays.asList("k1", "k1/sk1");
+        List<String> expect = Arrays.asList("k1", "k1/sk1");
+        List<String> result = Departure.fillGaps(input);
+
+        assertThat(
+                result,
+                is(expect)
         );
     }
 }

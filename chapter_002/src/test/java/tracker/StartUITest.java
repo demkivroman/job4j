@@ -8,23 +8,21 @@ import ru.job4j.tracker.*;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.StringJoiner;
+import java.util.function.Consumer;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class StartUITest {
-    private final PrintStream def = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private final PrintStream stdout = new PrintStream(out);
+    private final Consumer<String> output = new Consumer<String>() {
+        @Override
+        public void accept(String s) {
+            stdout.println(s);
+        }
+    };
 
-    @Before
-    public void loadOutput() {
-        System.setOut(new PrintStream(this.out));
-    }
-
-    @After
-    public void backOutput() {
-        System.setOut(this.def);
-    }
     @Test
     public void whenAddItem() {
         String[] answers = {"Fix PC"};
@@ -60,28 +58,5 @@ public class StartUITest {
         Item found = tracker.findById(answers[0]);
         Item expected = null;
         assertThat(found, is(expected));
-    }
-    @Test
-    public void whenExit() {
-        StubInput input = new StubInput(
-                new String[] {"0"}
-        );
-        StubAction action = new StubAction();
-        new StartUI().init(input, new Tracker(), new UserAction[] {action});
-        assertThat(action.isCall(), is(true));
-    }
-    @Test
-    public void whenPrtMenu() {
-        StubInput input = new StubInput(
-                new String[] {"0"}
-        );
-        StubAction action = new StubAction();
-        new StartUI().init(input, new Tracker(), new UserAction[] {action});
-        String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
-                .add("Menu.")
-                .add("0. Stub action")
-                .add("6. === Exit ===")
-                .toString();
-        assertThat(new String(this.out.toByteArray()), is(expect));
     }
 }

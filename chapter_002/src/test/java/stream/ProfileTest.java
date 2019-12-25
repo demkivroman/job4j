@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -30,6 +31,31 @@ public class ProfileTest {
         assertThat(
                 expect,
                 is(rsl)
+        );
+    }
+    @Test
+    public void whenCheckAddressUnic() {
+        Address first = new Address("Borislav", "Kovaliva", 5, 1);
+        Address second = new Address("Lviv", "Kovaliva", 6, 2);
+        Address thirt = new Address("Abc", "Valova", 10, 1);
+        Address forth = new Address("Borislav", "Kovaliva", 5, 1);
+
+
+        List<Profile> list = new ArrayList<>();
+        list.add(new Profile(first));
+        list.add(new Profile(second));
+        list.add(new Profile(thirt));
+        list.add(new Profile(forth));
+
+        List<Address> rsl = new Profile().collectUnic(list);
+
+        List<String> result = rsl.stream().map(
+                el -> el.getCity()
+        ).collect(Collectors.toList());
+        List<String> expect = List.of("Abc", "Borislav", "Lviv");
+        assertThat(
+                expect,
+                is(result)
         );
     }
 

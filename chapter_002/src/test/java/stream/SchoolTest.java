@@ -2,7 +2,10 @@ package stream;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -69,5 +72,26 @@ public class SchoolTest {
                 is(rsl.stream().map(
                         score -> score.getScore()).
                         collect(Collectors.toList())));
+    }
+    @Test
+    public void whenCheckStudentsListToMap() {
+        Student roman = new Student(50, "Roman");
+        Student petr = new Student(90, "Petr");
+        Student oksana = new Student(69, "Oksana");
+        List<Student> students = new ArrayList<>();
+        students.add(roman);
+        students.add(petr);
+        students.add(oksana);
+        School school = new School();
+        Map<String, Student> rsl = school.collectMap(students);
+        Map<String, Student> expect = new LinkedHashMap<>();
+        expect.put("Roman", roman);
+        expect.put("Petr", petr);
+        expect.put("Oksana", oksana);
+
+        assertThat(
+                expect,
+                is(rsl)
+        );
     }
 }

@@ -94,4 +94,26 @@ public class SchoolTest {
                 is(rsl)
         );
     }
+    @Test
+    public void whenCheckStudentsGroupbyScore() {
+        Student roman = new Student(50, "Roman");
+        Student petr = new Student(90, "Petr");
+        Student oksana = new Student(69, "Oksana");
+        Student sasha = new Student(5, "Oleksandr");
+        List<Student> students = new ArrayList<>();
+        students.add(roman);
+        students.add(petr);
+        students.add(oksana);
+        students.add(sasha);
+        List<Student> rsl = new School().levelOf(students, 50);
+        List<String> expect = List.of("Petr", "Oksana");
+
+        assertThat(
+                expect,
+                is(rsl.stream().map(
+                        el -> el.getName()
+                ).collect(Collectors.toList()))
+        );
+
+    }
 }

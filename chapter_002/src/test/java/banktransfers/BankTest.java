@@ -34,7 +34,6 @@ public class BankTest {
         Account account = new Account(10000, "4056897812");
         bank.addAccountToUser("ks052635", account);
         List<Account> list = bank.getUserAccounts("ks052635");
-
         assertThat(
                 account,
                 is(list.get(0))

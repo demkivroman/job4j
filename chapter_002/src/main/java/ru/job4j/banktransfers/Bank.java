@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Bank {
     private Map<User, List<Account>> userAccounts = new HashMap<>();
@@ -53,25 +54,20 @@ public class Bank {
     }
 
     private Account getAccount(List<Account> accounts, String requisite) {
-        Account acc = null;
-        for (Account account : accounts) {
-            if (account.getRequisites().equals(requisite)) {
-                acc = account;
-                break;
-            }
-        }
-        return acc;
+        List<Account> rsl;
+        rsl = accounts.stream().filter(
+                el -> el.getRequisites().equals(requisite)
+        ).collect(Collectors.toList());
+        return rsl.size() > 0 ? rsl.get(0) : null;
     }
 
     private User getUser(String passport) {
-        User user = null;
-        for (Map.Entry<User, List<Account>> entry : this.userAccounts.entrySet()) {
-            if (entry.getKey().getPassport().equals(passport)) {
-                user = entry.getKey();
-                break;
-            }
-        }
-        return user;
+        List<User> rsl = this.userAccounts.entrySet().stream().map(
+                el -> el.getKey()
+        ).filter(
+                el -> el.getPassport().equals(passport)
+        ).collect(Collectors.toList());
+        return rsl.size() > 0 ? rsl.get(0) : null;
     }
 
 }

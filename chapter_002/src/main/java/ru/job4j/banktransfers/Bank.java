@@ -54,20 +54,20 @@ public class Bank {
     }
 
     private Account getAccount(List<Account> accounts, String requisite) {
-        List<Account> rsl;
+        Account rsl;
         rsl = accounts.stream().filter(
                 el -> el.getRequisites().equals(requisite)
-        ).collect(Collectors.toList());
-        return rsl.size() > 0 ? rsl.get(0) : null;
+        ).findFirst().orElse(null);
+        return rsl;
     }
 
     private User getUser(String passport) {
-        List<User> rsl = this.userAccounts.entrySet().stream().map(
+        User rsl = this.userAccounts.entrySet().stream().map(
                 el -> el.getKey()
         ).filter(
                 el -> el.getPassport().equals(passport)
-        ).collect(Collectors.toList());
-        return rsl.size() > 0 ? rsl.get(0) : null;
+        ).findFirst().orElse(null);
+        return rsl;
     }
 
 }

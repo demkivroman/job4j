@@ -22,10 +22,10 @@ public class MatrixIterator implements Iterator {
         }
         int el = this.array[row][cell];
         if (cell < this.array[row].length - 1) {
-            cell ++;
+            cell++;
         } else {
             cell = 0;
-            row ++;
+            row++;
         }
         return el;
     }

@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class MatrixIterator implements Iterator {
     private final int[][] array;
@@ -16,6 +17,9 @@ public class MatrixIterator implements Iterator {
 
     @Override
     public Object next() {
+        if (!this.hasNext()) {
+            throw new NoSuchElementException();
+        }
         int el = this.array[row][cell];
         if (cell < this.array[row].length - 1) {
             cell ++;

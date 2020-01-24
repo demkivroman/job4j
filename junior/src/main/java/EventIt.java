@@ -12,14 +12,19 @@ public class EventIt implements Iterator {
 
     @Override
     public boolean hasNext() {
-        return (this.findElement(index) < 0) ? false : true;
+        boolean rsl = false;
+        int indexOfElement = this.findElement(index);
+        if (indexOfElement > -1) {
+            rsl = true;
+            this.index = indexOfElement;
+        }
+        return rsl;
     }
     @Override
     public Object next() {
         if (!this.hasNext()) {
             throw new NoSuchElementException();
         }
-        index = this.findElement(index);
         return this.array[index++];
     }
     private int findElement(int index) {

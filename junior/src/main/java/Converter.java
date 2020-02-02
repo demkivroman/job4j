@@ -1,15 +1,22 @@
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
-public class Converter {
+public class Converter implements Iterator<Integer> {
+    private Iterator<Integer> iterator;
+
     public Iterator<Integer> convert(Iterator<Iterator<Integer>> it) {
-        List<Integer> list = new ArrayList<>();
-        it.forEachRemaining(
-                iter -> iter.forEachRemaining(
-                        el -> list.add(el)
-                )
-        );
-        return list.iterator();
+        while (it.hasNext()) {
+            Iterator<Integer> itr = it.next();
+
+        }
+        return iterator;
+    }
+    @Override
+    public boolean hasNext() {
+        return false;
+    }
+
+    @Override
+    public Integer next() {
+        return null;
     }
 }

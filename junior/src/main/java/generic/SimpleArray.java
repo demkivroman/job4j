@@ -1,9 +1,7 @@
 package generic;
 
-import java.awt.*;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
 
 public class SimpleArray<T> implements Iterable<T> {
     private final Object[] array;

@@ -57,7 +57,7 @@ public class EvenIteratorTest {
         assertThat(it.next(), is(8));
     }
     @Test(expected = NoSuchElementException.class)
-    public void AllTests() {
+    public void allTests() {
         shouldReturnEvenNumbersSequentially();
         sequentialHasNextInvocationDoesntAffectRetrievalOrder();
         shouldReturnFalseIfNoAnyEvenNumbers();

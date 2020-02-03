@@ -22,6 +22,12 @@ public class IteratorOfIteratorsTest {
         Converter iteratorofiterators = new Converter();
         it = iteratorofiterators.convert(its);
     }
+    @Test
+    public void mytest() {
+        assertThat(it.next(), is(1));
+        assertThat(it.next(), is(2));
+        assertThat(it.next(), is(3));
+    }
 
     @Test
     public void hasNextNextSequentialInvocation() {
@@ -97,4 +103,5 @@ public class IteratorOfIteratorsTest {
         it.next();
     }
 }
+
 

@@ -2,7 +2,7 @@ package conteiner;
 
 import generic.SimpleArray;
 
-public class UserStore implements Store<User>{
+public class UserStore implements Store<User> {
     private SimpleArray<User> array;
     public UserStore(int size) {
         array = new SimpleArray<>(size);

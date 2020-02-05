@@ -24,9 +24,15 @@ public class IteratorOfIteratorsTest {
     }
     @Test
     public void mytest() {
-        assertThat(it.next(), is(1));
-        assertThat(it.next(), is(2));
-        assertThat(it.next(), is(3));
+        Iterator<Integer> it1 = null;
+        Iterator<Integer> it2 = Arrays.asList(7, 8, 9).iterator();
+        Iterator<Integer> it3 = null;
+        Iterator<Iterator<Integer>> its = Arrays.asList(it1, it2, it3).iterator();
+        Converter iteratorofiterators = new Converter();
+        it = iteratorofiterators.convert(its);
+        assertThat(it.next(), is(7));
+        assertThat(it.next(), is(8));
+        assertThat(it.next(), is(9));
     }
 
     @Test

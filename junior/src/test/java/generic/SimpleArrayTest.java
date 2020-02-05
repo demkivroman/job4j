@@ -3,7 +3,6 @@ package generic;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.Iterator;
-//knknkjnknknkn
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;

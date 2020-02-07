@@ -20,7 +20,7 @@ public class SimpleArray<T> implements Iterable<T> {
     }
     public boolean set(int index, T model) {
         boolean rsl = false;
-        if (this.array[index] != null) {
+        if (index < this.index) {
             this.array[index] = model;
             rsl = true;
         }

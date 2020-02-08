@@ -9,7 +9,7 @@ public class Converter {
 
             @Override
             public boolean hasNext() {
-                while(iter == null) {
+                while (iter == null) {
                     if (it.hasNext()) {
                         iter = it.next();
                     }

@@ -2,27 +2,13 @@ package conteiner;
 
 import generic.SimpleArray;
 
-public class UserStore implements Store<User> {
-    private SimpleArray<User> array;
+public class UserStore extends AbstractStore<User> {
     public UserStore(int size) {
-        array = new SimpleArray<>(size);
-    }
-    @Override
-    public void add(User model) {
-        array.add(model);
-    }
-    @Override
-    public boolean replace(String id, User model) {
-        return false;
-    }
-
-    @Override
-    public boolean delete(String id) {
-        return false;
+        super(size);
     }
 
     @Override
     public User findById(String id) {
-        return null;
+        return (User) super.findById(id);
     }
 }

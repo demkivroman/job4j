@@ -2,28 +2,20 @@ package conteiner;
 
 import generic.SimpleArray;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.Iterator;
 
-public abstract class AbstractStore<K> implements Store {
+public abstract class AbstractStore<K extends Base> implements Store<K> {
     private SimpleArray<Base> array;
     public AbstractStore(int size) {
         array = new SimpleArray<>(size);
     }
-    @Override
-    public void add(Base model) {
-        if (checkType(model)) {
-            array.add(model);
-        } else {
-            throw new ClassCastException();
-        }
-    }
 
     @Override
+    public void add(K model) {
+        array.add(model);
+    }
+    @Override
     public boolean replace(String id, Base model) {
-        if (!checkType(model)) {
-            throw new ClassCastException();
-        }
         boolean rsl = false;
         int index = findIndex(id);
         if (index >= 0) {
@@ -45,13 +37,13 @@ public abstract class AbstractStore<K> implements Store {
     }
 
     @Override
-    public Base findById(String id) {
+    public K findById(String id) {
         int index = findIndex(id);
         Base rsl = null;
         if (index >= 0) {
             rsl = array.get(index);
         }
-        return rsl;
+        return (K) rsl;
     }
     private int findIndex(String id) {
         int index = -1;
@@ -66,10 +58,5 @@ public abstract class AbstractStore<K> implements Store {
             step++;
         }
         return index;
-    }
-
-    private boolean checkType(Base model) {
-        return model.getClass().getCanonicalName().equals(
-                ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0].getTypeName());
     }
 }

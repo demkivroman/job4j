@@ -20,14 +20,6 @@ public class StoreTest {
                 is(ob1.getId())
         );
     }
-    @Test(expected = ClassCastException.class)
-    public void whenCheckAddIncorrectElementThrowCastExeption() {
-        UserStore store = new UserStore(3);
-        User ob1 = new User("1");
-        Role ob2 = new Role("2");
-        store.add(ob1);
-        store.add(ob2);
-    }
     @Test
     public void whenCheckRemoveItem() {
         UserStore store = new UserStore(3);

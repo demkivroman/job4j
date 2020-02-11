@@ -17,8 +17,10 @@ public class SimpleArrayList<E> {
 
     public E delete() {
         Node<E> rsl = this.first;
-        this.first = rsl.next;
-        this.size--;
+        if (rsl != null) {
+            this.first = rsl.next;
+            this.size--;
+        }
         return rsl.data;
     }
     /**

@@ -4,19 +4,13 @@ import list.SimpleArrayList;
 
 public class SimpleStack<T> {
     private SimpleArrayList<T> container;
-    private int position;
 
     public SimpleStack() {
         this.container = new SimpleArrayList<>();
-        this.position = 0;
     }
 
     public T poll() {
-        T rsl = null;
-        if (position < this.container.getSize()) {
-            rsl = container.get(position);
-            this.position++;
-        }
+        T rsl = this.container.delete();
         return rsl;
     }
 

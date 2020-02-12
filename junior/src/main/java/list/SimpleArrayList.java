@@ -17,11 +17,13 @@ public class SimpleArrayList<E> {
 
     public E delete() {
         Node<E> rsl = this.first;
+        E result = null;
         if (rsl != null) {
             this.first = rsl.next;
             this.size--;
+            result = rsl.data;
         }
-        return rsl.data;
+        return result;
     }
     /**
      * Method retrieving element by index

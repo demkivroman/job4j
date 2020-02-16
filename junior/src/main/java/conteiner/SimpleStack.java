@@ -15,8 +15,6 @@ public class SimpleStack<T> {
     }
 
     public void push(T value) {
-        if (value != null) {
             this.container.add(value);
-        }
     }
 }

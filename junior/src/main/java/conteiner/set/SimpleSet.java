@@ -15,7 +15,7 @@ public class SimpleSet<T> implements Iterable<T> {
         Iterator<T> iter = this.list.iterator();
         while (iter.hasNext()) {
             T element = iter.next();
-            if (element.equals(value)) {
+            if (this.compareElement(element, value)) {
                 isElement = true;
                 break;
             }
@@ -23,6 +23,9 @@ public class SimpleSet<T> implements Iterable<T> {
         if (!isElement) {
             list.add(value);
         }
+    }
+    private boolean compareElement(T elem, T value) {
+        return elem.equals(value);
     }
 
     @Override

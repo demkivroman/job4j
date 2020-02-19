@@ -12,4 +12,10 @@ public class User {
         this.children = children;
         this.birthday = birthday;
     }
+
+    @Override
+    public int hashCode() {
+        int result = 31 * (this.name.hashCode() + this.children + this.birthday.hashCode());
+        return result;
+    }
 }

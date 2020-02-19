@@ -18,5 +18,7 @@ public class UserTest {
         map.put(user1, "Object1");
         map.put(user2, "Object2");
         System.out.println(map);
+        System.out.println(user1.hashCode());
+        System.out.println(user2.hashCode());
     }
 }

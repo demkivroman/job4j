@@ -17,8 +17,18 @@ public class UserTest {
         Map<User, Object> map = new HashMap<>();
         map.put(user1, "Object1");
         map.put(user2, "Object2");
-        System.out.println(map);
-        System.out.println(user1.hashCode());
-        System.out.println(user2.hashCode());
+  //      System.out.println(map);
+    //    System.out.println(user1.hashCode());
+   //     System.out.println(user2.hashCode());
+        Object obj = new Object();
+        int h = obj.hashCode();
+        int n;
+        System.out.println(h);
+        System.out.println(h / 32);
+        System.out.println(Integer.toBinaryString(h));
+        System.out.println(Integer.toBinaryString(n = h >>> 16));
+        System.out.println(n);
+        System.out.println(Integer.toBinaryString(h ^ n));
+        System.out.println(h ^ n);
     }
 }

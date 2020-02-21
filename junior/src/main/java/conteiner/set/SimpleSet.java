@@ -3,6 +3,7 @@ package conteiner.set;
 import conteiner.DynamicList;
 
 import java.util.Iterator;
+import java.util.Optional;
 
 public class SimpleSet<T> implements Iterable<T> {
     private DynamicList<T> list;
@@ -11,23 +12,18 @@ public class SimpleSet<T> implements Iterable<T> {
     }
 
     public void add(T value) {
-        boolean isElement = false;
-        Iterator<T> iter = this.list.iterator();
-        while (iter.hasNext()) {
-            T element = iter.next();
-            if (this.compareElement(element, value)) {
-                isElement = true;
-                break;
-            }
-        }
-        if (!isElement) {
+        boolean[] arr = {false};
+        list.forEach(
+                el -> {
+                    if (el.equals(value)) {
+                        arr[0] = true;
+                    }
+                }
+        );
+        if (!arr[0]) {
             list.add(value);
         }
     }
-    private boolean compareElement(T elem, T value) {
-        return elem.equals(value);
-    }
-
     @Override
     public Iterator<T> iterator() {
         return this.list.iterator();

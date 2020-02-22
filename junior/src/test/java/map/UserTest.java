@@ -3,10 +3,8 @@ package map;
 import conteiner.map.User;
 import org.junit.Test;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class UserTest {
     @Test
@@ -20,15 +18,24 @@ public class UserTest {
   //      System.out.println(map);
     //    System.out.println(user1.hashCode());
    //     System.out.println(user2.hashCode());
-        Object obj = new Object();
-        int h = obj.hashCode();
-        int n;
-        System.out.println(h);
-        System.out.println(h / 32);
-        System.out.println(Integer.toBinaryString(h));
-        System.out.println(Integer.toBinaryString(n = h >>> 16));
-        System.out.println(n);
-        System.out.println(Integer.toBinaryString(h ^ n));
-        System.out.println(h ^ n);
+        String[] arr = {"roman", "demkiv", "oleh", "vasul", "petro", "hgvhgvhvh", "kjbjbjjbjbj",
+        "vgvgvhhhhvhvhv", "xcxcxczdzdzd", "vgvhvhvvhv"};
+        Stream.of(arr).forEach(
+                entry -> {
+                    System.out.print(
+                            Objects.hashCode(entry) % 15 + "  ");
+                    System.out.print((Objects.hashCode(entry) & Objects.hashCode(15)) + "  |");
+                }
+        );
+        System.out.println();
+        Stream.of(arr).forEach(
+                entry -> {
+                    System.out.print(
+                            User.hash(entry) % 15 + "  ");
+                    System.out.print((User.hash(entry) & Objects.hashCode(15)) + "  |");
+                }
+        );
+        System.out.println();
+        System.out.println(16 << 1);
     }
 }

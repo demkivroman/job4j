@@ -7,6 +7,8 @@ public class User {
     private int children;
     private Calendar birthday;
 
+    public User() {}
+
     public User(String name, int children, Calendar birthday) {
         this.name = name;
         this.children = children;
@@ -26,5 +28,10 @@ public class User {
         return this.name.equals(userObj.name) &&
                 this.children == userObj.children &&
                 this.birthday.equals(userObj.birthday);
+    }
+
+    public static int hash(Object key) {
+        int h;
+        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
     }
 }

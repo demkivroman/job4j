@@ -4,17 +4,17 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class SimpleMap <K, V> implements Iterable {
+public class SimpleMap<K, V> implements Iterable {
     int initialCapacity = 1 << 4;
     float loadFactor = 0.75f;
     int maximumCapacity = 1 << 30;
-    Node<K,V>[] table;
+    Node<K, V>[] table;
     int size;
     int threshold;
 
     public boolean insert(K key, V value) {
         boolean rsl;
-        Node<K,V> entry = new Node<>(key, value);
+        Node<K, V> entry = new Node<>(key, value);
         if (table == null) {
             resize();
         }
@@ -28,8 +28,8 @@ public class SimpleMap <K, V> implements Iterable {
 
     public V get(K key) {
         V rsl = null;
-        for (Node<K,V> entry : table) {
-            Node<K,V> el = entry;
+        for (Node<K, V> entry : table) {
+            Node<K, V> el = entry;
             do {
                 if (el != null) {
                     if (el.key.equals(key)) {
@@ -46,18 +46,18 @@ public class SimpleMap <K, V> implements Iterable {
     public boolean delete(K key) {
         boolean rsl = false;
         int i = 0;
-        for (Node<K,V> entry : table) {
-            Node<K,V> el = entry, next = (el != null) ? el.next : null;
+        for (Node<K, V> entry : table) {
+            Node<K, V> el = entry, next = (el != null) ? el.next : null;
             if (el != null && el.key.equals(key)) {
                 table[i] = (el.next != null) ? el.next : null;
                 rsl = true;
-                size --;
+                size--;
             }
             while (next != null) {
                 if (next.key.equals(key)) {
                     el.next = (next.next != null) ? next.next : null;
                     rsl = true;
-                    size --;
+                    size--;
                     break;
                 }
                 el = next;
@@ -78,11 +78,11 @@ public class SimpleMap <K, V> implements Iterable {
         return (key == null) ? 0 : Objects.hashCode(key) ^ Objects.hashCode(key) >>> 16;
     }
 
-    boolean putValue(Node<K,V> value) {
+    boolean putValue(Node<K, V> value) {
         boolean rsl = false;
         int index = initialCapacity & hash(value.key);
         index = (index == initialCapacity) ? initialCapacity - 1 : index;
-        Node<K,V> cell, nextCell, last =null;
+        Node<K, V> cell, nextCell, last = null;
         boolean replace = false;
         if ((cell = table[index]) != null) {
             do {
@@ -97,18 +97,18 @@ public class SimpleMap <K, V> implements Iterable {
             if (!replace) {
                 last.next = value;
                 rsl = true;
-                size ++;
+                size++;
             }
         } else {
             table[index] = value;
             rsl = true;
-            size ++;
+            size++;
         }
         return rsl;
     }
 
     private void resize() {
-        Node<K,V>[] tab;
+        Node<K, V>[] tab;
         int len;
         if (size >= maximumCapacity) {
             initialCapacity = maximumCapacity;
@@ -124,7 +124,7 @@ public class SimpleMap <K, V> implements Iterable {
             threshold = (int) (initialCapacity * loadFactor);
 
             for (int i = 0; i < table.length; i++) {
-                Node<K,V> entry = table[i];
+                Node<K, V> entry = table[i];
                 table[i] = null;
                 tab[i] = entry;
             }
@@ -132,15 +132,15 @@ public class SimpleMap <K, V> implements Iterable {
         table = tab;
     }
 
-    public Iterator<Node<K,V>> iterator() {
+    public Iterator<Node<K, V>> iterator() {
         return new Iterator<>() {
             int iterSize = 0;
             int cell = 0;
-            Node<K,V> current, next;
+            Node<K, V> current, next;
             public boolean hasNext() {
                 return iterSize < size;
             }
-            public Node<K,V> next() {
+            public Node<K, V> next() {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
@@ -153,7 +153,7 @@ public class SimpleMap <K, V> implements Iterable {
                         current = table[cell++];
                     }
                     next = (current != null) ? current.next : null;
-                    iterSize ++;
+                    iterSize++;
                 } else {
                     current = next;
                     next = current.next;
@@ -164,10 +164,10 @@ public class SimpleMap <K, V> implements Iterable {
         };
     }
 
-    public static class Node<K,V> {
+    public static class Node<K, V> {
         private K key;
         private V value;
-        Node<K,V> next;
+        Node<K, V> next;
 
         public Node(K key, V value) {
             this.key = key;

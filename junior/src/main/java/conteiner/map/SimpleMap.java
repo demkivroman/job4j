@@ -86,8 +86,7 @@ public class SimpleMap <K, V> implements Iterable {
         boolean replace = false;
         if ((cell = table[index]) != null) {
             do {
-                if (cell.key.equals(value.key) &&
-                Objects.hashCode(cell.key) == Objects.hashCode(value.key)) {
+                if (cell.key.equals(value.key)) {
                     cell.value = value.value;
                     replace = true;
                     break;
@@ -124,16 +123,16 @@ public class SimpleMap <K, V> implements Iterable {
             initialCapacity = len;
             threshold = (int) (initialCapacity * loadFactor);
 
-            int i = 0;
-            for (Node<K,V> entry : table) {
+            for (int i = 0; i < table.length; i++) {
+                Node<K,V> entry = table[i];
                 table[i] = null;
-                tab[i++] = entry;
+                tab[i] = entry;
             }
         }
         table = tab;
     }
 
-    public Iterator<Entry<K,V>> iterator() {
+    public Iterator<Node<K,V>> iterator() {
         return new Iterator<>() {
             int iterSize = 0;
             int cell = 0;
@@ -141,7 +140,7 @@ public class SimpleMap <K, V> implements Iterable {
             public boolean hasNext() {
                 return iterSize < size;
             }
-            public Entry<K,V> next() {
+            public Node<K,V> next() {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
@@ -160,29 +159,17 @@ public class SimpleMap <K, V> implements Iterable {
                     next = current.next;
                     iterSize++;
                 }
-                return new Entry<>(current.key, current.value);
+                return current;
             }
         };
     }
 
-    static class Node<K,V> {
-        K key;
-        V value;
+    public static class Node<K,V> {
+        private K key;
+        private V value;
         Node<K,V> next;
 
         public Node(K key, V value) {
-            this.key = key;
-            this.value = value;
-        }
-    }
-    /*
-    class for iterating through map elements
-     */
-    public static class Entry<K,V> {
-        private K key;
-        private V value;
-
-        public Entry(K key, V value) {
             this.key = key;
             this.value = value;
         }

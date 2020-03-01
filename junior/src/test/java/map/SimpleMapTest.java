@@ -75,7 +75,7 @@ public class SimpleMapTest {
     }
     @Test
     public void whenCheckIteratorSimpleMap() {
-        Iterator<SimpleMap.Entry<Integer, String>> iter = map.iterator();
+        Iterator<SimpleMap.Node<Integer, String>> iter = map.iterator();
         String[] expected = {"roman", "petr", "oleh"};
         String[] actual = new String[map.size()];
         int i = 0;

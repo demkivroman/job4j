@@ -46,25 +46,24 @@ public class SimpleMap<K, V> implements Iterable {
     public boolean delete(K key) {
         boolean rsl = false;
         int i = 0;
-        for (Node<K, V> entry : table) {
-            Node<K, V> el = entry, next = (el != null) ? el.next : null;
-            if (el != null && el.key.equals(key)) {
-                table[i] = (el.next != null) ? el.next : null;
+        int index = this.createIndex(key);
+        Node<K, V> el = this.table[index], next = (el != null) ? el.next : null;
+        if (el != null) {
+            if (el.key.equals(key)) {
+                table[i] = (next == null) ? null : next;
                 rsl = true;
                 size--;
-            }
-            while (next != null) {
-                if (next.key.equals(key)) {
-                    el.next = (next.next != null) ? next.next : null;
-                    rsl = true;
-                    size--;
-                    break;
+            } else {
+                while (next != null) {
+                    if (next.key.equals(key)) {
+                        el.next = (next.next != null) ? next.next : null;
+                        rsl = true;
+                        size--;
+                        break;
+                    }
+                    el = next;
+                    next = el.next;
                 }
-                el = next;
-                next = el.next;
-            }
-            if (rsl) {
-                break;
             }
         }
         return rsl;
@@ -78,10 +77,14 @@ public class SimpleMap<K, V> implements Iterable {
         return (key == null) ? 0 : Objects.hashCode(key) ^ Objects.hashCode(key) >>> 16;
     }
 
+    private int createIndex(K key) {
+        int index = initialCapacity & hash(key);
+        return (index == initialCapacity) ? initialCapacity - 1 : index;
+    }
+
     boolean putValue(Node<K, V> value) {
         boolean rsl = false;
-        int index = initialCapacity & hash(value.key);
-        index = (index == initialCapacity) ? initialCapacity - 1 : index;
+        int index = this.createIndex(value.key);
         Node<K, V> cell, nextCell, last = null;
         boolean replace = false;
         if ((cell = table[index]) != null) {

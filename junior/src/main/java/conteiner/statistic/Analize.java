@@ -1,29 +1,56 @@
 package conteiner.statistic;
 
-import java.util.List;
+import java.util.*;
 
 public class Analize {
     public Info diff(List<User> prevoius, List<User> current) {
-        int diff;
+        int change = 0, add = 0, del = 0;
         Info info = new Info();
-        info.deleted = ((diff = (prevoius.size() - current.size())) < 0) ? 0 : diff;
-        info.added = (diff < 0) ? Math.abs(diff) : 0;
-        info.changed = findDifference(prevoius, current);
-        return info;
-    }
-    int findDifference(List<User> previous, List<User> current) {
-        int rsl = 0;
-        for (int index = 0; index < current.size(); index++) {
-            User prevUser = index < previous.size() ? previous.get(index) : null;
-            User curUser = current.get(index);
-            if (prevUser == null) {
-                break;
+        Iterator<User> prevIter = prevoius.iterator();
+        User prevUser;
+        while (prevIter.hasNext()) {
+            prevUser = prevIter.next();
+            User curUser;
+            Iterator<User> curIter = current.iterator();
+            int count = 0;
+            while (curIter.hasNext()) {
+                curUser = curIter.next();
+                if (prevUser.id == curUser.id) {
+                    if (!prevUser.name.equals(curUser.name)) {
+                        change++;
+                        break;
+                    } else {
+                        break;
+                    }
+                }
+                count++;
             }
-            if (prevUser.id == curUser.id && !prevUser.name.equals(curUser.name)) {
-                rsl++;
+            if (count == current.size()) {
+                del++;
             }
         }
-        return rsl;
+        Iterator<User> iterAdd = current.iterator();
+        User curUser;
+        while (iterAdd.hasNext()) {
+            curUser = iterAdd.next();
+            User prev;
+            Iterator<User> iter = prevoius.iterator();
+            int count = 0;
+            while (iter.hasNext()) {
+                prev = iter.next();
+                if (curUser.id == prev.id) {
+                    break;
+                }
+                count++;
+            }
+            if (count == prevoius.size()) {
+                add++;
+            }
+        }
+        info.added = add;
+        info.changed = change;
+        info.deleted = del;
+        return info;
     }
     public static class User {
         private int id;

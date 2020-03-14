@@ -4,52 +4,24 @@ import java.util.*;
 
 public class Analize {
     public Info diff(List<User> prevoius, List<User> current) {
-        int change = 0, add = 0, del = 0;
+        int change = 0, add = 0;
         Info info = new Info();
-        Iterator<User> prevIter = prevoius.iterator();
-        User prevUser;
-        while (prevIter.hasNext()) {
-            prevUser = prevIter.next();
-            User curUser;
-            Iterator<User> curIter = current.iterator();
-            int count = 0;
-            while (curIter.hasNext()) {
-                curUser = curIter.next();
-                if (prevUser.id == curUser.id) {
-                    if (!prevUser.name.equals(curUser.name)) {
-                        change++;
-                        break;
-                    } else {
-                        break;
-                    }
-                }
-                count++;
-            }
-            if (count == current.size()) {
-                del++;
-            }
-        }
-        Iterator<User> iterAdd = current.iterator();
-        User curUser;
-        while (iterAdd.hasNext()) {
-            curUser = iterAdd.next();
-            User prev;
-            Iterator<User> iter = prevoius.iterator();
-            int count = 0;
-            while (iter.hasNext()) {
-                prev = iter.next();
-                if (curUser.id == prev.id) {
-                    break;
-                }
-                count++;
-            }
-            if (count == prevoius.size()) {
+        Map<Integer, User> mapPrev = new HashMap<>();
+        prevoius.forEach(
+                el -> mapPrev.put(el.id, el)
+        );
+
+        for (User entry : current) {
+            User user = mapPrev.remove(entry.id);
+            if (user == null) {
                 add++;
+            } else if (!user.name.equals(entry.name)) {
+                change++;
             }
         }
         info.added = add;
         info.changed = change;
-        info.deleted = del;
+        info.deleted = mapPrev.size();
         return info;
     }
     public static class User {

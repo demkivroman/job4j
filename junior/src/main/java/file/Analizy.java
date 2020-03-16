@@ -8,38 +8,31 @@ import java.io.PrintWriter;
 public class Analizy {
     public void unavailable(String source, String target) {
         try (BufferedReader read = new BufferedReader(new FileReader(source))) {
+            StringBuilder tempLog = new StringBuilder();
             String line;
             boolean flag = true;
-            PrintWriter out = new PrintWriter(new FileOutputStream(target));
             while ((line = read.readLine()) != null) {
                 String[] arr = line.split(" ");
                 if (arr[0].equals("400") || arr[0].equals("500")) {
                     if (flag) {
-                        try {
-                            out.print(String.format("%s;", arr[1]));
-                            flag = false;
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        tempLog.append(arr[1]).append(";");
+                        flag = false;
                     }
                 } else {
                     if (!flag) {
-                        try {
-                            out.println(String.format("%s;", arr[1]));
-                            flag = true;
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        tempLog.append(arr[1]).append(";").append(System.lineSeparator());
+                        flag = true;
                     }
                 }
             }
+            PrintWriter out = new PrintWriter(new FileOutputStream(target));
+            out.print(tempLog.toString());
             out.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
-
     public static void main(String[] args) {
         try (PrintWriter out = new PrintWriter(
                 new FileOutputStream("unavailable.csv"))) {

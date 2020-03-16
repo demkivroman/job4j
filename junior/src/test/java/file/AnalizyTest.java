@@ -8,8 +8,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 public class AnalizyTest {
-    private String source = "/home/roman/IdeaProjects/job4j/junior/src/main/java/file/server_log.csv";
-    private String target = "/home/roman/IdeaProjects/job4j/junior/src/main/java/file/analyze_server_log.csv";
+    private File source = new File("./server_log.csv");
+    private File target = new File("./analyze_server_log.csv");
 
     @Test
     public void whenCheckServerLog() {
@@ -26,7 +26,7 @@ public class AnalizyTest {
             e.printStackTrace();
         }
         Analizy analizy = new Analizy();
-        analizy.unavailable(source, target);
+        analizy.unavailable(source.getPath(), target.getPath());
 
         StringBuilder builder = new StringBuilder();
 
@@ -45,6 +45,8 @@ public class AnalizyTest {
                 expected,
                 is(builder.toString())
         );
+        source.delete();
+        target.delete();
     }
     @Test
     public void whenCheckEmptyServerLogError() {
@@ -61,7 +63,7 @@ public class AnalizyTest {
             e.printStackTrace();
         }
         Analizy analizy = new Analizy();
-        analizy.unavailable(source, target);
+        analizy.unavailable(source.getPath(), target.getPath());
 
         StringBuilder builder = new StringBuilder();
 
@@ -79,5 +81,7 @@ public class AnalizyTest {
                 expected,
                 is(builder.toString())
         );
+        source.delete();
+        target.delete();
     }
 }

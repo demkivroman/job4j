@@ -33,10 +33,10 @@ public class AnalizyTest {
         StringBuilder builder = new StringBuilder();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(target))) {
-            reader.lines().forEach(builder::append);
+            reader.lines().forEach(line -> builder.append(line).append(System.lineSeparator()));
         }
 
-        String expected = "10:58:01;10:59:01;11:01:02;11:03:01;";
+        String expected = String.format("10:58:01;10:59:01;%s11:01:02;11:03:01;%s", System.lineSeparator(), System.lineSeparator());
 
         assertThat(
                 expected,

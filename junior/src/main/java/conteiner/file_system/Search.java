@@ -1,42 +1,43 @@
 package conteiner.file_system;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
+import static java.nio.file.FileVisitResult.CONTINUE;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
-import java.util.function.Predicate;
 
 public class Search {
-    public List<File> files(String parent, Predicate<File> condition) {
-        List<File> rsl = new ArrayList<>();
-        File root = new File(parent);
-        Queue<File> data = new LinkedList<>();
-        data.offer(root);
-        while (!data.isEmpty()) {
-            File file = data.poll();
-            if (file.isDirectory()) {
-                File[] arr = file.listFiles();
-                if (arr != null) {
-                    data.addAll(List.of(file.listFiles()));
-                }
-            } else if (file.isFile()) {
-                if (condition.test(file)) {
-                    rsl.add(file);
-                }
+    public static List<String> search(Path root, String ext) throws IOException {
+        List<String> rsl = new ArrayList<>();
+        Files.walkFileTree(root, new FileVisitor<Path>() {
+            @Override
+            public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+                return CONTINUE;
             }
-        }
+
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                if (file.toString().endsWith(ext)) {
+                    rsl.add(file.toAbsolutePath().toString());
+                }
+                return CONTINUE;
+            }
+
+            @Override
+            public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
+                return CONTINUE;
+            }
+
+            @Override
+            public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+                return CONTINUE;
+            }
+        });
         return rsl;
     }
-    public boolean isTxtFile(File file) {
-        boolean rsl = false;
-        String[] arrFile = file.getName().split("\\.");
-        if (arrFile.length == 2) {
-            if (arrFile[1].equals("txt")) {
-                rsl = true;
-            }
-        }
-        return rsl;
+    public static void main(String[] args) throws IOException {
+        Path path = Paths.get("/home/roman/IdeaProjects/job4j");
+        search(path, "js").forEach(System.out::println);
     }
 }

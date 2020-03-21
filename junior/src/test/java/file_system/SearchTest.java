@@ -40,8 +40,6 @@ public class SearchTest {
     }
     @Test
     public void whenCheckSearchOfFileSystem() throws IOException {
-        Search search = new Search();
-        List<File> list = search.files(path, search::isTxtFile);
-        System.out.println(list);
+
     }
 }

@@ -1,4 +1,4 @@
-package conteiner.file_system;
+package conteiner.filesystem;
 
 import java.io.IOException;
 import java.nio.file.*;

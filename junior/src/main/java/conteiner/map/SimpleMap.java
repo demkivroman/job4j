@@ -85,9 +85,9 @@ public class SimpleMap<K, V> implements Iterable {
     boolean putValue(Node<K, V> value) {
         boolean rsl = false;
         int index = this.createIndex(value.key);
-        Node<K, V> cell, nextCell, last = null;
+        Node<K, V> cell = table[index], nextCell, last = null;
         boolean replace = false;
-        if ((cell = table[index]) != null) {
+        if (cell != null) {
             do {
                 if (cell.key.equals(value.key)) {
                     cell.value = value.value;
@@ -96,7 +96,8 @@ public class SimpleMap<K, V> implements Iterable {
                 }
                 nextCell = cell.next;
                 last = cell;
-            } while ((cell = nextCell) != null);
+                cell = nextCell;
+            } while (cell != null);
             if (!replace) {
                 last.next = value;
                 rsl = true;

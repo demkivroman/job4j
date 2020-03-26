@@ -37,7 +37,7 @@ public class Chat {
         return String.format("%s - %s", dateFormat.format(date), value);
     }
 
-    public void run () {
+    public void run() {
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(log, true)))) {
             System.out.println("Ask chat?");
             Scanner in = new Scanner(System.in);

@@ -11,9 +11,8 @@ public class Chat {
     private String log;
 
     public Chat() {
-        String dir = System.getProperty("user.dir");
-        this.answFile = dir.concat("/junior/src/main/java/chat/answers");
-        this.log = dir.concat("/junior/src/main/java/chat/log");
+        this.answFile = "./chat/answers";
+        this.log = "./chat/log";
         try (BufferedReader read = new BufferedReader(new FileReader(answFile))) {
             int index = 0;
             String line = read.readLine();
@@ -42,24 +41,27 @@ public class Chat {
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(log, true)))) {
             System.out.println("Ask chat?");
             Scanner in = new Scanner(System.in);
-            String cycle = in.nextLine();
-            out.println(getTimeForLog(cycle));
-            while (!cycle.equals("закончить")) {
-                if (cycle.equals("стоп")) {
-                    while (!cycle.equals("продолжить")) {
-                        cycle = in.nextLine();
-                        out.println(getTimeForLog(cycle));
+            String line = in.nextLine();
+            boolean cycle = true;
+            while (cycle) {
+                out.println(getTimeForLog(line));
+                if (line.equals("закончить")) {
+                    cycle = false;
+                } else if (line.equals("стоп")) {
+                    while (!line.equals("продолжить")) {
+                        line = in.nextLine();
+                        out.println(getTimeForLog(line));
                     }
                     String ans = getAnswer();
                     System.out.println(ans);
                     out.println(getTimeForLog(ans));
+                    line = in.nextLine();
                 } else {
                     String ans = getAnswer();
                     System.out.println(ans);
                     out.println(getTimeForLog(ans));
+                    line = in.nextLine();
                 }
-                cycle = in.nextLine();
-                out.println(getTimeForLog(cycle));
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,6 +1,7 @@
 package chat;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -11,8 +12,8 @@ public class Chat {
     private String log;
 
     public Chat() {
-        this.answFile = "./chat/answers";
-        this.log = "./chat/log";
+        this.answFile = new File("junior/src/main/java/chat/answers").getAbsolutePath();
+        this.log = new File("junior/src/main/java/chat/log").getAbsolutePath();
         try (BufferedReader read = new BufferedReader(new FileReader(answFile))) {
             int index = 0;
             String line = read.readLine();

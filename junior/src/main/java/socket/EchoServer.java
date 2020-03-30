@@ -10,9 +10,8 @@ import java.net.Socket;
 public class EchoServer {
     public static String getParamater(String value) {
         String rsl;
-        String[] arr = value.split("\\?");
-        String[] par = (arr.length > 1) ? arr[1].split(" ") : null;
-        rsl = (par != null) ? par[0].split("=")[1] : null;
+        int index = value.indexOf('=');
+        rsl = value.substring(index + 1, value.length()-9);
         return rsl;
     }
     public static void main(String[] args) throws IOException {

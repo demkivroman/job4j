@@ -11,7 +11,7 @@ public class EchoServer {
     public static String getParamater(String value) {
         String rsl;
         int index = value.indexOf('=');
-        rsl = value.substring(index + 1, value.length()-9);
+        rsl = value.substring(index + 1, value.length() - 9);
         return rsl;
     }
     public static void main(String[] args) throws IOException {

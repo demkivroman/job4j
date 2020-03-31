@@ -5,10 +5,10 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class Args {
-    String directory;
-    String name;
-    SearchType type;
-    String log;
+    private String directory;
+    private String name;
+    private SearchType type;
+    private String log;
 
     public Args(String[] args) throws IllegalArgumentException, IllegalMaskException {
         validateParam(args);
@@ -51,6 +51,21 @@ public class Args {
                     + "by <file name> put key [-f]";
             throw new IllegalMaskException(msg);
         }
+    }
+    public String getDirectory() {
+        return directory;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public SearchType getType() {
+        return type;
+    }
+
+    public String getLog() {
+        return log;
     }
     enum SearchType {
         m, f, r

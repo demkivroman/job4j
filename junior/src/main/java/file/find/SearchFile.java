@@ -14,7 +14,7 @@ import static java.nio.file.FileVisitResult.CONTINUE;
 public class SearchFile implements FileVisitor<Path> {
     private Args args;
     private StringBuilder out;
-    public SearchFile(Args args) throws IOException {
+    public SearchFile(Args args) {
         this.args = args;
         out = new StringBuilder();
     }

@@ -37,9 +37,8 @@
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
-                <version>3.6.2</version>
                 <configuration>
-                    <changeLogFile>${basedir}/db/master.xml</changeLogFile>
+                    <changeLogFile>${basedir}/src/main/java/db/master.xml</changeLogFile>
                     <url>jdbc:postgresql://127.0.0.1:5432/tracker</url>
                     <username>postgres</username>
                     <password>password</password>

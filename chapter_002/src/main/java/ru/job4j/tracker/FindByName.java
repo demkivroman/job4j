@@ -6,7 +6,7 @@ public class FindByName extends BaseAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, ITracker tracker) {
         String name = input.askStr("Enter name: ");
         for (Item im : tracker.findByName(name)) {
             System.out.println(String.format("%s - %s", im.getName(), im.getId()));

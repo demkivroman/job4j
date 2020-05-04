@@ -6,7 +6,7 @@ public class FindById extends BaseAction {
     }
 
     @Override
-    public boolean execute(Input input, ITracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         String id = input.askStr("Enter id: ");
         Item im = tracker.findById(id);
         if (im != null) {

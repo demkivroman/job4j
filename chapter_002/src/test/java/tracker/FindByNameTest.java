@@ -15,10 +15,10 @@ public class FindByNameTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintStream def = System.out;
         System.setOut(new PrintStream(out));
-        Tracker tracker = new Tracker();
+        Store memTracker = new TrackerSQL();
         Item item = new Item("found item");
-        tracker.add(item);
-        new FindByName(5, "Find Item by name").execute(new StubInput(new String[] {"found item"}), tracker);
+        memTracker.add(item);
+        new FindByName(5, "Find Item by name").execute(new StubInput(new String[] {"found item"}), memTracker);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add(item.getName() + " - " + item.getId())
                 .toString();

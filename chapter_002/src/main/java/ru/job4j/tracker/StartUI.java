@@ -1,14 +1,13 @@
 package ru.job4j.tracker;
 
-
 import java.util.function.Consumer;
 
 public class StartUI {
     private final Input input;
-    private final ITracker tracker;
+    private final Store tracker;
     private final Consumer<String> output;
 
-    public StartUI(Input input, ITracker tracker, Consumer<String> output) {
+    public StartUI(Input input, Store tracker, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
         this.output = output;
@@ -41,7 +40,8 @@ public class StartUI {
     }
     public static void main(String[] args) {
         Input validate = new ValidateInput(new ConsoleInput());
-        Tracker tracker = new Tracker();
+        Store tracker = new TrackerSQL();
         new StartUI(validate, tracker, System.out::println).init();
+
     }
 }

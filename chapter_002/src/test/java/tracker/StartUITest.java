@@ -1,13 +1,10 @@
 package tracker;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import ru.job4j.tracker.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.StringJoiner;
 import java.util.function.Consumer;
 
 import static org.hamcrest.core.Is.is;
@@ -27,35 +24,35 @@ public class StartUITest {
     public void whenAddItem() {
         String[] answers = {"Fix PC"};
         Input input = new StubInput(answers);
-        Tracker tracker = new Tracker();
-        new CreateAction(0, "Create Item").execute(input, tracker);
-        Item created = tracker.findAll().get(0);
+        Store memTracker = new TrackerSQL();
+        new CreateAction(0, "Create Item").execute(input, memTracker);
+        Item created = memTracker.findAll().get(0);
         Item expected = new Item("Fix PC");
         assertThat(created.getName(), is(expected.getName()));
     }
     @Test
     public void whenReplaceItem() {
-        Tracker tracker = new Tracker();
+        Store memTracker = new TrackerSQL();
         Item item = new Item("new item");
-        tracker.add(item);
+        memTracker.add(item);
         String[] answers = {
                 item.getId(),
                 "replaced item"
         };
-        new EditAction(2, "Edit Item").execute(new StubInput(answers), tracker);
-        Item replaced = tracker.findById(item.getId());
+        new EditAction(2, "Edit Item").execute(new StubInput(answers), memTracker);
+        Item replaced = memTracker.findById(item.getId());
         assertThat(replaced.getName(), is("replaced item"));
     }
     @Test
     public void whenDeleteItem() {
-        Tracker tracker = new Tracker();
+        Store memTracker = new TrackerSQL();
         Item item = new Item("delete item");
-        tracker.add(item);
+        memTracker.add(item);
         String[] answers = {
                 item.getId()
         };
-        new DeleteAction(3, "Delete Item").execute(new StubInput(answers), tracker);
-        Item found = tracker.findById(answers[0]);
+        new DeleteAction(3, "Delete Item").execute(new StubInput(answers), memTracker);
+        Item found = memTracker.findById(answers[0]);
         Item expected = null;
         assertThat(found, is(expected));
     }

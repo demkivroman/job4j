@@ -6,7 +6,7 @@ public class EditAction extends BaseAction {
     }
 
     @Override
-    public boolean execute(Input input, ITracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         String id = input.askStr("Enter id: ");
         String name = input.askStr("Enter new name: ");
         if (tracker.replace(id, new Item(name))) {

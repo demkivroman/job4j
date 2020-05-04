@@ -2,7 +2,7 @@ package ru.job4j.tracker;
 
 import java.util.*;
 
-public class Tracker implements ITracker {
+public abstract class MemTracker implements Store {
     /**
      * Array for storing items
      */
@@ -11,9 +11,11 @@ public class Tracker implements ITracker {
      * Point for new item
      */
     private int position = 0;
+
     /**
      * Method for adding items into container
      */
+
     public Item add(Item item) {
         item.setId(this.generateId());
         this.items.add(item);

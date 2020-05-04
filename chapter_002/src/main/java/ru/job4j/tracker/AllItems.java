@@ -5,7 +5,7 @@ public class AllItems extends BaseAction {
         super(key, name);
     }
     @Override
-    public boolean execute(Input input, ITracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         for (Item item : tracker.findAll()) {
             System.out.println(String.format("%s %s", item.getId(), item.getName()));
         }

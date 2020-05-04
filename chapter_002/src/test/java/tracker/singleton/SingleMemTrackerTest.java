@@ -9,7 +9,7 @@ import ru.job4j.tracker.singleton.SingleTracker2;
 import ru.job4j.tracker.singleton.SingleTracker3;
 import ru.job4j.tracker.singleton.SingleTracker4;
 
-public class SingleTrackerTest {
+public class SingleMemTrackerTest {
     @Test
     public void whenCnekSingleTracker1() {
         SingleTracker1 tracker1 = SingleTracker1.getInstance();

@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 public class ReportEngine {
-    private Store store;
+    protected Store store;
 
     public ReportEngine(Store store) {
         this.store = store;

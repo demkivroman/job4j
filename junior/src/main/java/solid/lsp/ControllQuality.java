@@ -2,16 +2,16 @@ package solid.lsp;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ControllQuality {
-    private WareHouse wareHouse;
-    private Shop shop;
-    private Trash trash;
+    List<FoodContainer> containers = new LinkedList<>();
+    public ControllQuality() {
+    }
 
-    public ControllQuality(WareHouse wareHouse, Shop shop, Trash trash) {
-        this.wareHouse = wareHouse;
-        this.shop = shop;
-        this.trash = trash;
+    public ControllQuality(List<FoodContainer> containers) {
+        this.containers = containers;
     }
 
     public int getExpired(Food food) {
@@ -24,22 +24,12 @@ public class ControllQuality {
         return (int) (currentPeriod / allExpaire * 100);
     }
 
-    public void contribute(Food food) {
-        int percent = getExpired(food);
-        FoodContainerContext foodContext;
-        if (percent < 25) {
-            foodContext = new FoodContainerContext(wareHouse);
-            foodContext.addFood(food);
-        } else if (percent >= 25 && percent <= 75) {
-            foodContext = new FoodContainerContext(shop);
-            foodContext.addFood(food);
-        } else if (percent > 75 && percent < 100) {
-            food.setDiscount(10);
-            foodContext = new FoodContainerContext(shop);
-            foodContext.addFood(food);
-        } else {
-            foodContext = new FoodContainerContext(trash);
-            foodContext.addFood(food);
+    public void distibute(Food food) {
+        for (FoodContainer container : containers) {
+            if (container.accept(food)) {
+                container.addFood(food);
+                break;
+            }
         }
     }
 
@@ -58,10 +48,10 @@ public class ControllQuality {
         WareHouse wareHouse = new WareHouse();
         Shop shop = new Shop();
         Trash trash = new Trash();
-        ControllQuality control = new ControllQuality(wareHouse, shop, trash);
-        control.contribute(milk);
-        control.contribute(oil);
-        control.contribute(pasta);
+        ControllQuality control = new ControllQuality(List.of(wareHouse, shop, trash));
+        control.distibute(milk);
+        control.distibute(oil);
+        control.distibute(pasta);
         System.out.println("WareHouse:");
         wareHouse.showFood();
         System.out.println("Shop:");

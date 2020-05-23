@@ -17,4 +17,14 @@ public class Trash implements FoodContainer {
                 food -> System.out.println(String.format("Name - %s", food.getName()))
         );
     }
+
+    @Override
+    public boolean accept(Food food) {
+        boolean rsl = false;
+        int percent = new ControllQuality().getExpired(food);
+        if (percent > 100) {
+            rsl = true;
+        }
+        return rsl;
+    }
 }
